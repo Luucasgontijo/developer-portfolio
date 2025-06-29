@@ -8,7 +8,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   const [isLangHovering, setIsLangHovering] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
 
-  const CV_FILE_ID = '1XNReOhdbYm3cldI-3XodmNMVy49Gfbf6';
+  const CV_FILE_ID = '133o2vHPS-m6YxEmeyeTfgxgqIgpGADCy';
   const CV_DOWNLOAD_URL = `https://drive.google.com/uc?export=download&id=${CV_FILE_ID}`;
 
   // Monitor scroll position to update active section
