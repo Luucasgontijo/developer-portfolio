@@ -30,6 +30,7 @@ const Layout = ({ children }) => {
                 min-h-screen
                 h-screen overflow-y-scroll
                 pt-16 md:pt-0
+                lg:snap-y lg:snap-mandatory /* Enabled from lg screens and up */
                 ${
                   isDarkMode
                     ? "bg-darkMode-100 text-lightMode-200"

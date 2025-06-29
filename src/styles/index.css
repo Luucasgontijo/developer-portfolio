@@ -28,4 +28,21 @@
   .outline-hover-effect:hover::after {
     @apply w-full;
   }
+
+  .hero-main-text {
+    /* Base size is text-2xl (1.5rem) from JSX */
+    /* sm size is also text-2xl, so no specific rule needed for sm if base is 2xl */
+  }
+
+  @screen md {
+    .hero-main-text {
+      @apply text-4xl; /* 2.25rem */
+    }
+  }
+
+  @screen lg {
+    .hero-main-text {
+      @apply text-5xl; /* 3rem */
+    }
+  }
 }

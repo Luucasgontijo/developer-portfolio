@@ -80,7 +80,7 @@ const Hero = () => {
       <div className="flex flex-col items-center justify-center max-w-5xl">
         <p
           className={`
-                    text-lg sm:text-2xl md:text-4xl lg:text-5xl 
+                    text-2xl sm:text-2xl md:text-4xl lg:text-5xl /* Changed base size to text-2xl */
                     text-center font-bold leading-relaxed mb-8
                     bg-gradient-to-r 
                     ${
