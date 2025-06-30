@@ -82,13 +82,7 @@ const Hero = () => {
           className={`
                     text-2xl sm:text-2xl md:text-4xl lg:text-5xl /* Changed base size to text-2xl */
                     text-center font-bold leading-relaxed mb-8
-                    bg-gradient-to-r 
-                    ${
-                      isDarkMode
-                        ? "from-darkMode-400 to-darkMode-500"
-                        : "from-lightMode-400/80 to-lightMode-300/50"
-                    }
-                    bg-clip-text text-transparent
+                    ${isDarkMode ? "text-darkMode-400" : "text-lightMode-300"}
                     transition-all transform 
                     ${
                       textVisible

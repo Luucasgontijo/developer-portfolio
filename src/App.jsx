@@ -4,6 +4,8 @@ import { ThemeProvider } from "./context/ThemeContext";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import ProjectDetail from "./pages/ProjectDetail";
+import { StagewiseToolbar } from "@stagewise/toolbar-react";
+import { ReactPlugin } from "@stagewise-plugins/react";
 
 const App = () => {
   return (
@@ -18,6 +20,11 @@ const App = () => {
           </div>
         </Layout>
       </Router>
+      <StagewiseToolbar
+        config={{
+          plugins: [ReactPlugin],
+        }}
+      />
     </ThemeProvider>
   );
 };

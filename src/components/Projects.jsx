@@ -389,7 +389,7 @@ const projects = [
     githubLink: null,
     deployLink: null,
   },
-    {
+  {
     id: 4,
     title: {
       pt: "Este Portfólio",
@@ -535,9 +535,9 @@ const projects = [
         </>
       ),
     },
-    githubLink: "https://github.com/yourusername/project-three",
-    deployLink: "https://project-three-demo.vercel.app/",
-  }
+    githubLink: "https://github.com/Luucasgontijo/developer-portfolio",
+    deployLink: "",
+  },
 ];
 
 const Projects = () => {
@@ -564,13 +564,7 @@ const Projects = () => {
         font-bold
         leading-relaxed
         mb-12 sm:mb-20
-        bg-gradient-to-r 
-        ${
-          isDarkMode
-            ? "from-darkMode-400 to-darkMode-500"
-            : "from-lightMode-400/80 to-lightMode-300/50"
-        }
-        bg-clip-text text-transparent
+        ${isDarkMode ? "text-darkMode-400" : "text-lightMode-400"}
         transition-all transform `}
         >
           {language === "en" ? "Projects" : "Projetos"}

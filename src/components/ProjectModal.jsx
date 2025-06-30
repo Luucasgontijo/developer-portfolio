@@ -54,9 +54,9 @@ const ProjectModal = ({ project, onClose }) => {
         </h2>
 
         {/* Conteúdo */}
-        <div className="flex-grow overflow-hidden">
+         <div className="flex-grow overflow-y-auto custom-scrollbar pr-2">
           {/* Descrição */}
-          <div className="text-lg md:text-xl leading-relaxed">
+          <div className="text-base md:text-lg leading-relaxed">
             {project.detailedDescription
               ? project.detailedDescription[language]
               : project.description[language]}
