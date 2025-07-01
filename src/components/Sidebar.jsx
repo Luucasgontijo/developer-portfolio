@@ -16,8 +16,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   const [activeSection, setActiveSection] = useState("about");
   const [selectedSkill, setSelectedSkill] = useState(null);
 
-  const CV_FILE_ID = "133o2vHPS-m6YxEmeyeTfgxgqIgpGADCy";
-  const CV_DOWNLOAD_URL = `https://drive.google.com/uc?export=download&id=${CV_FILE_ID}`;
+
 
   // Monitor scroll position to update active section
   useEffect(() => {
@@ -53,14 +52,6 @@ const Sidebar = ({ isOpen, onClose }) => {
     };
   }, []);
 
-  const handleCVDownload = () => {
-    const link = document.createElement("a");
-    link.href = CV_DOWNLOAD_URL;
-    link.download = "CV-LUCASGONTIJO.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   const toggleLanguage = () => {
     changeLanguage(language === "en" ? "pt" : "en");
@@ -174,14 +165,6 @@ const Sidebar = ({ isOpen, onClose }) => {
               </a>
             </li>
 
-            <li>
-              <button
-                onClick={handleCVDownload}
-                className={getLiClass("skills")}
-              >
-                {language === "en" ? "CV" : "CV"}
-              </button>
-            </li>
           </ul>
 
           <hr
