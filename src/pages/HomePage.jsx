@@ -1,18 +1,19 @@
 import React from 'react';
-// import Header from '../components/Header';
 import Hero from '../components/Hero';
 import About from '../components/About';
+import Experiences from '../components/Experiences';
+import Skills from '../components/Skills';
 import Contact from '../components/Contact';
-import Layout from '../components/Layout';
-import Sidebar from '../components/Sidebar';
 
 const HomePage = () => {
     return (
-        <Layout>
+        <>
             <Hero />
             <About />
+            <Experiences />
+            <Skills />
             <Contact />
-        </Layout>
+        </>
     );
 };
 

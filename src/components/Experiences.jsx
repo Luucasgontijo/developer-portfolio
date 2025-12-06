@@ -1,10 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import { MdExpandMore, MdExpandLess } from "react-icons/md";
 
 const Experiences = () => {
   const { isDarkMode, language } = useContext(ThemeContext);
-  const [showAllExperiences, setShowAllExperiences] = useState(false);
 
   const experiences = {
     en: [
@@ -112,10 +110,10 @@ const Experiences = () => {
   return (
     <section
       id="experience"
-      className={`min-h-screen snap-start flex flex-col justify-center px-6 sm:px-12 md:px-20 lg:px-32 py-24 overflow-y-auto
+      className={`min-h-screen snap-start flex flex-col justify-center px-6 sm:px-12 md:px-20 lg:px-32 py-24
         ${
           isDarkMode
-            ? "bg-darkMode-200 text-darkMode-300"
+            ? "bg-darkMode-100 text-darkMode-300"
             : "bg-white text-lightMode-300"
         }`}
     >
@@ -128,80 +126,90 @@ const Experiences = () => {
             ${isDarkMode ? "text-darkMode-400" : "text-lightMode-400"}
           `}
         >
-          {language === "en" ? "Experience" : "Experiência"}
+          {language === "en" ? "Experiences" : "Experiências"}
         </h2>
         
-        <div className="space-y-6">
-          {(showAllExperiences ? experiences[language] : experiences[language].slice(0, 3)).map((exp, index) => (
-            <div
-              key={index}
-              className={`
-                p-6 rounded-xl
-                ${isDarkMode ? "bg-darkMode-100" : "bg-lightMode-200"}
-              `}
-            >
-              <div className="flex items-start gap-2 mb-2">
-                {exp.international && <span className="text-xl">🇺🇸</span>}
-                <h3
+        {/* Horizontal scrolling container */}
+        <div className="relative">
+          <div 
+            className={`
+              flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory
+              scrollbar-hide
+            `}
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none'
+            }}
+          >
+            <style jsx>{`
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+            
+            {experiences[language].map((exp, index) => (
+              <div
+                key={index}
+                className={`
+                  flex-shrink-0 w-[85vw] sm:w-[75vw] md:w-[60vw] lg:w-[50vw] snap-center
+                  p-8 rounded-md min-h-[400px] flex flex-col justify-center
+                  ${isDarkMode ? "bg-darkMode-100" : "bg-lightMode-200"}
+                `}
+              >
+                <div className="flex items-start gap-2 mb-6">
+                  {exp.international && <span className="text-xl">🇺🇸</span>}
+                  <h3
+                    className={`
+                      text-xl font-semibold
+                      ${isDarkMode ? "text-darkMode-400" : "text-lightMode-400"}
+                    `}
+                  >
+                    {exp.role}
+                  </h3>
+                </div>
+                
+                <div className="mb-6">
+                  <p
+                    className={`
+                      text-sm font-medium mb-1
+                      ${isDarkMode ? "text-darkMode-300" : "text-lightMode-300"}
+                    `}
+                  >
+                    {exp.company} • {exp.location}
+                  </p>
+                  <p
+                    className={`
+                      text-xs
+                      ${isDarkMode ? "text-darkMode-300 opacity-70" : "text-lightMode-300 opacity-70"}
+                    `}
+                  >
+                    {exp.period}
+                  </p>
+                </div>
+                
+                <p
                   className={`
-                    text-xl font-semibold
-                    ${isDarkMode ? "text-darkMode-400" : "text-lightMode-400"}
+                    text-base text-justify
+                    ${isDarkMode ? "text-darkMode-300" : "text-lightMode-300"}
                   `}
                 >
-                  {exp.role}
-                </h3>
+                  {exp.description}
+                </p>
               </div>
-              <p
-                className={`
-                  text-sm font-medium mb-1
-                  ${isDarkMode ? "text-darkMode-300" : "text-lightMode-300"}
-                `}
-              >
-                {exp.company} • {exp.location}
-              </p>
-              <p
-                className={`
-                  text-xs mb-3
-                  ${isDarkMode ? "text-darkMode-300 opacity-70" : "text-lightMode-300 opacity-70"}
-                `}
-              >
-                {exp.period}
-              </p>
-              <p
-                className={`
-                  text-base
-                  ${isDarkMode ? "text-darkMode-300" : "text-lightMode-300"}
-                `}
-              >
-                {exp.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Show More/Less Button */}
-        {experiences[language].length > 3 && (
-          <div className="mt-8 text-center">
-            <button
-              onClick={() => setShowAllExperiences(!showAllExperiences)}
-              className={`
-                inline-flex items-center gap-2 px-6 py-2 text-base
-                transition-colors duration-200
-                ${
-                  isDarkMode
-                    ? "text-darkMode-300 hover:text-darkMode-400"
-                    : "text-lightMode-300 hover:text-lightMode-400"
-                }
-              `}
-            >
-              {showAllExperiences 
-                ? (language === "en" ? "Show Less" : "Mostrar Menos")
-                : (language === "en" ? "Show All Experience" : "Mostrar Toda Experiência")
-              }
-              {showAllExperiences ? <MdExpandLess size={20} /> : <MdExpandMore size={20} />}
-            </button>
-          </div>
-        )}
+        <div className="mt-8 text-center">
+          <p
+            className={`
+              text-sm
+              ${isDarkMode ? "text-darkMode-300 opacity-70" : "text-lightMode-300 opacity-70"}
+            `}
+          >
+            {language === "en" ? "← Scroll to see more →" : "← Role para ver mais →"}
+          </p>
+        </div>
       </div>
     </section>
   );

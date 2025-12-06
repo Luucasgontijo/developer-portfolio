@@ -64,11 +64,12 @@ const Hero = () => {
             items-center
             relative
             px-4 sm:px-8 md:px-16 lg:px-24
+            pt-16 md:pt-0
             snap-start
             ${
               isDarkMode
                 ? "bg-darkMode-100 text-lightMode-200"
-                : "bg-light text-lightMode-100"
+                : "bg-white text-lightMode-100"
             }
         `}
       id="hero"

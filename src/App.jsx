@@ -4,6 +4,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import ProjectDetail from "./pages/ProjectDetail";
+import FloatingIcons from "./components/FloatingIcons";
 import { StagewiseToolbar } from "@stagewise/toolbar-react";
 import { ReactPlugin } from "@stagewise-plugins/react";
 
@@ -12,6 +13,7 @@ const App = () => {
     <ThemeProvider>
       <Router>
         <Layout>
+          <FloatingIcons />
           <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
             <Routes>
               <Route path="/" element={<HomePage />} />

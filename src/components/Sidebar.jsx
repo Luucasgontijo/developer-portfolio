@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   // Monitor scroll position to update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "experience", "skills", "contact", "automation", "fullstack", "ai"];
+      const sections = ["about", "experience", "skills", "automation", "fullstack", "ai"];
       const scrollPosition = window.scrollY + 200;
 
       let currentSection = "about";
@@ -141,7 +141,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 onClick={handleNavClick}
                 className={getLiClass("experience")}
               >
-                {language === "en" ? "Experience" : "Experiência"}
+                {language === "en" ? "Experiences" : "Experiências"}
               </a>
             </li>
 

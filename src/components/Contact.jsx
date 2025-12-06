@@ -39,14 +39,11 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className={`p-4 sm:p-8 py-24 sm:py-32 min-h-screen flex flex-col justify-center
-            overflow-y-auto custom-scrollbar ${
-              /* Added overflow-y-auto and custom-scrollbar */ ""
-            }
+      className={`min-h-screen snap-start flex flex-col justify-center px-6 sm:px-12 md:px-20 lg:px-32 py-24
             ${
               isDarkMode
                 ? "bg-darkMode-100 text-lightMode-400"
-                : "bg-lightMode-100 text-darkMode-300"
+                : "bg-white text-darkMode-300"
             }`}
     >
       <div className="max-w-4xl mx-auto">
