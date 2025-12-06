@@ -12,7 +12,7 @@ const App = () => {
     <ThemeProvider>
       <Router>
         <Layout>
-          <div className="h-screen overflow-y-scroll ">
+          <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/project/:id" element={<ProjectDetail />} />

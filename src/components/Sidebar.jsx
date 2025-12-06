@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   // Monitor scroll position to update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "experience", "contact", "automation", "fullstack", "ai"];
+      const sections = ["about", "experience", "skills", "contact", "automation", "fullstack", "ai"];
       const scrollPosition = window.scrollY + 200;
 
       let currentSection = "about";
@@ -133,24 +133,6 @@ const Sidebar = ({ isOpen, onClose }) => {
               >
                 {language === "en" ? "About" : "Sobre"}
               </a>
-              
-              {/* Core Skills as children of About */}
-              <ul className="mt-3 ml-4 space-y-2 text-base">
-                {coreSkills[language].map((skill) => (
-                  <li key={skill.id}>
-                    <a
-                      href={`#${skill.id}`}
-                      onClick={handleNavClick}
-                      className={`
-                        block px-2 py-1 transition-colors duration-200
-                        ${getLiClass(skill.id)}
-                      `}
-                    >
-                      {skill.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </li>
 
             <li>
@@ -165,12 +147,31 @@ const Sidebar = ({ isOpen, onClose }) => {
 
             <li>
               <a
-                href="#contact"
+                href="#skills"
                 onClick={handleNavClick}
-                className={getLiClass("contact")}
+                className={getLiClass("skills")}
               >
-                {language === "en" ? "Contact" : "Contato"}
+                {language === "en" ? "Skills" : "Habilidades"}
               </a>
+              
+              {/* Core Skills as children of Skills with vertical line */}
+              <ul className="mt-3 ml-6 space-y-2 text-base relative">
+                <div className={`absolute left-2 top-0 bottom-0 w-0.5 ${isDarkMode ? "bg-darkMode-400" : "bg-lightMode-400"}`} />
+                {coreSkills[language].map((skill) => (
+                  <li key={skill.id} className="pl-4">
+                    <a
+                      href={`#${skill.id}`}
+                      onClick={handleNavClick}
+                      className={`
+                        block px-2 py-1 transition-colors duration-200
+                        ${getLiClass(skill.id)}
+                      `}
+                    >
+                      {skill.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </li>
           </ul>
 

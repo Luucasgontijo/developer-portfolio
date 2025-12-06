@@ -11,35 +11,35 @@ const Contact = () => {
       label: "WhatsApp",
       value: "+55 (62) 98537-2793",
       link: "https://wa.me/5562985372793",
-      color: "text-green-500",
+      color: isDarkMode ? "text-darkMode-400" : "text-lightMode-400",
     },
     {
       icon: <FaEnvelope size={24} />,
       label: language === "en" ? "Email" : "Email",
       value: "lucas.gontijo04@gmail.com",
       link: "mailto:lucas.gontijo04@gmail.co",
-      color: "text-blue-500",
+      color: isDarkMode ? "text-darkMode-400" : "text-lightMode-400",
     },
     {
       icon: <FaLinkedin size={24} />,
       label: "LinkedIn",
       value: "/in/lucas-gontijo-6887b92b3/",
       link: "https://www.linkedin.com/in/lucas-gontijo-6887b92b3/",
-      color: "text-blue-600",
+      color: isDarkMode ? "text-darkMode-400" : "text-lightMode-400",
     },
     {
       icon: <FaGithub size={24} />,
       label: "GitHub",
       value: "@Luucasgontijo",
       link: "https://github.com/Luucasgontijo",
-      color: isDarkMode ? "text-white" : "text-gray-800",
+      color: isDarkMode ? "text-darkMode-400" : "text-lightMode-400",
     },
   ];
 
   return (
     <section
       id="contact"
-      className={`p-4 sm:p-8 min-h-screen flex flex-col justify-center
+      className={`p-4 sm:p-8 py-24 sm:py-32 min-h-screen flex flex-col justify-center
             overflow-y-auto custom-scrollbar ${
               /* Added overflow-y-auto and custom-scrollbar */ ""
             }
@@ -79,16 +79,16 @@ const Contact = () => {
               href={contact.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group p-4 sm:p-6 rounded-lg border transition-all duration-300 hover:scale-105
+              className={`group p-4 sm:p-6 rounded-lg transition-colors duration-200
                                ${
                                  isDarkMode
-                                   ? "bg-darkMode-200 border-darkMode-500 hover:border-darkMode-400/70"
-                                   : "bg-white text-black border-lightMode-200 shadow-lg hover:border-lightMode-300/15"
-                               }  hover:shadow-lg`}
+                                   ? "bg-darkMode-200"
+                                   : "bg-lightMode-200"
+                               }`}
             >
               <div className="flex items-center space-x-3 sm:space-x-4">
                 <div
-                  className={`${contact.color} group-hover:scale-110 transition-transform`}
+                  className={`${contact.color} transition-transform`}
                 >
                   {contact.icon}
                 </div>

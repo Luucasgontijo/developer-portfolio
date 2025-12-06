@@ -100,8 +100,8 @@ const GitHubWidget = () => {
         className="block"
       >
         <h3
-          className={`text-sm font-light mb-3 px-2 tracking-wider transition-all
-          ${isDarkMode ? "text-darkMode-400 hover:text-darkMode-300" : "text-lightMode-400 hover:text-lightMode-500"}
+          className={`text-sm font-light mb-3 px-2 tracking-wider transition-all duration-300
+          ${isDarkMode ? "text-darkMode-400 hover:text-darkMode-300" : "text-lightMode-400 hover:text-lightMode-300"}
           `}
         >
           {isHoveringTitle 
