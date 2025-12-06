@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import profilePhoto from "../assets/profile-photo.png";
 
 const Hero = () => {
   const { isDarkMode, language } = useContext(ThemeContext);
@@ -63,11 +64,12 @@ const Hero = () => {
             items-center
             relative
             px-4 sm:px-8 md:px-16 lg:px-24
+            pt-16 md:pt-0
             snap-start
             ${
               isDarkMode
                 ? "bg-darkMode-100 text-lightMode-200"
-                : "bg-light text-lightMode-100"
+                : "bg-white text-lightMode-100"
             }
         `}
       id="hero"
@@ -77,7 +79,28 @@ const Hero = () => {
         <p className="text-lg sm:text-2xl font-light">{formatTime()}</p>
       </div>
 
-      <div className="flex flex-col items-center justify-center max-w-5xl">
+      <div className="flex flex-col items-center justify-center max-w-6xl">
+        {/* Profile Photo */}
+        <div
+          className={`
+            mb-8 overflow-hidden rounded-full border-4
+            ${isDarkMode ? "border-darkMode-400" : "border-lightMode-400"}
+            transition-all transform 
+            ${
+              textVisible
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-95"
+            }
+          `}
+          style={{ transitionDuration: "1200ms" }}
+        >
+          <img
+            src={profilePhoto}
+            alt="Lucas Gontijo"
+            className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-cover"
+          />
+        </div>
+
         <p
           className={`
                     text-2xl sm:text-2xl md:text-4xl lg:text-5xl /* Changed base size to text-2xl */
@@ -93,8 +116,8 @@ const Hero = () => {
           style={{ transitionDuration: "1800ms" }}
         >
           {language === "en"
-            ? "Lucas is a Software Engineer with a strong focus on Artificial Intelligence and chatbot development. He also brings solid experience in full-stack development, allowing him to build robust and scalable applications from end to back end."
-            : "Lucas é um Engenheiro de Software com forte foco em Inteligência Artificial e desenvolvimento de chatbots. Ele também possui sólida experiência em desenvolvimento fullstack, o que lhe permite construir aplicações robustas e escaláveis de ponta a ponta."}
+            ? "Lucas is an AI Automation Developer & n8n Specialist with expertise in full-stack development, artificial intelligence, and low-code orchestration platforms. He specializes in building sophisticated automation systems and intelligent workflows that deliver measurable business value."
+            : "Lucas é um Desenvolvedor de Automação com IA e Especialista em n8n com expertise em desenvolvimento full-stack, inteligência artificial e plataformas de orquestração low-code. Ele é especializado em construir sistemas de automação sofisticados e fluxos de trabalho inteligentes que entregam valor mensurável aos negócios."}
         </p>
 
         <div className="mt-6 flex justify-center">

@@ -29,18 +29,15 @@ const Layout = ({ children }) => {
                 flex-1
                 min-h-screen
                 h-screen overflow-y-scroll
-                pt-16 md:pt-0
-                lg:snap-y lg:snap-mandatory /* Enabled from lg screens and up */
+                lg:snap-y lg:snap-mandatory
                 ${
                   isDarkMode
-                    ? "bg-darkMode-100 text-lightMode-200"
-                    : "bg-light text-lightMode-100"
+                    ? "bg-darkMode-200 text-lightMode-200"
+                    : "bg-white text-lightMode-100"
                 }
             `}
       >
-        {React.Children.map(children, (child) => (
-          <section className="min-h-screen snap-start">{child}</section>
-        ))}
+        {children}
       </main>
     </div>
   );
