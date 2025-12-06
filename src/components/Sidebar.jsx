@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import SkillsModal from "./SkillsModal";
+import GitHubWidget from "./GitHubWidget";
 import {
   MdOutlineDarkMode,
   MdOutlineLightMode,
@@ -14,15 +14,12 @@ const Sidebar = ({ isOpen, onClose }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isLangHovering, setIsLangHovering] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
-  const [selectedSkill, setSelectedSkill] = useState(null);
-
-
 
   // Monitor scroll position to update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "projects", "contact"];
-      const scrollPosition = window.scrollY + 200; // Offset for better detection
+      const sections = ["about", "experience", "contact", "automation", "fullstack", "ai"];
+      const scrollPosition = window.scrollY + 200;
 
       let currentSection = "about";
 
@@ -43,15 +40,12 @@ const Sidebar = ({ isOpen, onClose }) => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // Call once to set initial state
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
 
   const toggleLanguage = () => {
     changeLanguage(language === "en" ? "pt" : "en");
@@ -66,7 +60,6 @@ const Sidebar = ({ isOpen, onClose }) => {
         : "text-lightMode-300 hover:text-lightMode-400"
     }`;
 
-  // Add smooth scroll handler
   const handleNavClick = (e) => {
     e.preventDefault();
     const targetId = e.currentTarget.getAttribute("href").substring(1);
@@ -75,26 +68,23 @@ const Sidebar = ({ isOpen, onClose }) => {
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth" });
       setActiveSection(targetId);
-      // Close sidebar on mobile after navigation
       if (window.innerWidth < 768) {
         onClose();
       }
     }
   };
 
-  // Handle skill modal opening
-  const handleSkillClick = (e, skillType) => {
-    e.preventDefault();
-    setSelectedSkill(skillType);
-    // Close sidebar on mobile after opening modal
-    if (window.innerWidth < 768) {
-      onClose();
-    }
-  };
-
-  // Handle skill modal closing
-  const handleCloseSkillModal = () => {
-    setSelectedSkill(null);
+  const coreSkills = {
+    en: [
+      { id: "automation", label: "n8n & Automation" },
+      { id: "fullstack", label: "Full-Stack Development" },
+      { id: "ai", label: "AI & Data Analysis" }
+    ],
+    pt: [
+      { id: "automation", label: "n8n & Automação" },
+      { id: "fullstack", label: "Desenvolvimento Full-Stack" },
+      { id: "ai", label: "IA & Análise de Dados" }
+    ]
   };
 
   return (
@@ -143,15 +133,33 @@ const Sidebar = ({ isOpen, onClose }) => {
               >
                 {language === "en" ? "About" : "Sobre"}
               </a>
+              
+              {/* Core Skills as children of About */}
+              <ul className="mt-3 ml-4 space-y-2 text-base">
+                {coreSkills[language].map((skill) => (
+                  <li key={skill.id}>
+                    <a
+                      href={`#${skill.id}`}
+                      onClick={handleNavClick}
+                      className={`
+                        block px-2 py-1 transition-colors duration-200
+                        ${getLiClass(skill.id)}
+                      `}
+                    >
+                      {skill.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </li>
 
             <li>
               <a
-                href="#projects"
+                href="#experience"
                 onClick={handleNavClick}
-                className={getLiClass("projects")}
+                className={getLiClass("experience")}
               >
-                {language === "en" ? "Projects" : "Projetos"}
+                {language === "en" ? "Experience" : "Experiência"}
               </a>
             </li>
 
@@ -164,7 +172,6 @@ const Sidebar = ({ isOpen, onClose }) => {
                 {language === "en" ? "Contact" : "Contato"}
               </a>
             </li>
-
           </ul>
 
           <hr
@@ -173,69 +180,8 @@ const Sidebar = ({ isOpen, onClose }) => {
             }`}
           />
 
-          {/* Skill categories */}
-          <div className="space-y-6">
-            <div>
-              <h3
-                className={`
-                text-sm font-light mb-3 px-2  
-                ${isDarkMode ? "text-darkMode-400" : "text-lightMode-400"}
-              `}
-              >
-                {language === "en"
-                  ? "FULLSTACK SKILLS"
-                  : "HABILIDADES FULLSTACK"}
-              </h3>
-              <ul className="space-y-2 text-base">
-                <li className="opacity-80 hover:opacity-100 transition-opacity">
-                  <button
-                    onClick={(e) => handleSkillClick(e, "frontend")}
-                    className={`${getLiClass("frontend")} w-full text-left`}
-                  >
-                    {language === "en" ? "Frontend" : "Frontend"}
-                  </button>
-                </li>
-                <li className="opacity-80 hover:opacity-100 transition-opacity">
-                  <button
-                    onClick={(e) => handleSkillClick(e, "backend")}
-                    className={`${getLiClass("backend")} w-full text-left`}
-                  >
-                    {language === "en" ? "Backend" : "Backend"}
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3
-                className={`text-sm font-light mb-3 px-2 tracking-wider
-              ${isDarkMode ? "text-darkMode-400" : "text-lightMode-400"}
-              `}
-              >
-                {language === "en" ? "AI SKILLS" : "HABILIDADES EM IA"}
-              </h3>
-              <ul className="space-y-2 text-base">
-                <li className="opacity-80 hover:opacity-100 transition-opacity">
-                  <button
-                    onClick={(e) => handleSkillClick(e, "ml")}
-                    className={`${getLiClass("ml")} w-full text-left`}
-                  >
-                    {language === "en"
-                      ? "Machine Learning"
-                      : "Machine Learning"}
-                  </button>
-                </li>
-                <li className="opacity-80 hover:opacity-100 transition-opacity">
-                  <button
-                    onClick={(e) => handleSkillClick(e, "nlp")}
-                    className={`${getLiClass("nlp")} w-full text-left`}
-                  >
-                    {language === "en" ? "NLP" : "PLN"}
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
+          {/* GitHub Widget */}
+          <GitHubWidget />
 
           <hr
             className={`my-6 ${
@@ -333,11 +279,6 @@ const Sidebar = ({ isOpen, onClose }) => {
           </button>
         </div>
       </aside>
-
-      {/* Skills Modal */}
-      {selectedSkill && (
-        <SkillsModal skill={selectedSkill} onClose={handleCloseSkillModal} />
-      )}
     </>
   );
 };
